@@ -1,0 +1,363 @@
+/* ========================================
+   BASIC PAGE SETUP
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ========================================
+   MAIN ANIMATION CONTAINER
+======================================== */
+
+#ui {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   EACH "I LOVE YOU"
+======================================== */
+
+.love {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 450px;
+    height: 450px;
+
+    margin-left: -225px;
+    margin-top: -225px;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   HORIZONTAL MOVEMENT
+
+   This moves each word from the left
+   side of the heart to the right side.
+======================================== */
+
+.love_horizontal {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    animation-name: horizontal;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    animation-delay: calc(var(--i) * -333ms);
+}
+
+
+/* ========================================
+   VERTICAL MOVEMENT
+
+   This combines with the horizontal
+   animation to create the heart path.
+======================================== */
+
+.love_vertical {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    animation-name: vertical;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    animation-delay: calc(var(--i) * -333ms);
+}
+
+/* ========================================
+   "I LOVE YOU" TEXT
+======================================== */
+
+.love_word {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    color: #ea80b0;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    text-shadow:
+    0 0 3px #ffffff,
+    0 0 6px #ea80b0,
+    0 0 10px #ff4fa3;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
+}
+
+
+/* ========================================
+   LEFT + RIGHT HEART MOVEMENT
+======================================== */
+
+@keyframes horizontal {
+
+    /* Bottom point */
+
+    0% {
+        transform: translateX(0px);
+    }
+
+
+    /* Travel up left side */
+
+    12.5% {
+        transform: translateX(-125px);
+    }
+
+    25% {
+        transform: translateX(-210px);
+    }
+
+
+    /* Left bump */
+
+    37.5% {
+        transform: translateX(-135px);
+    }
+
+
+    /* Center dip */
+
+    50% {
+        transform: translateX(0px);
+    }
+
+
+    /* Right bump */
+
+    62.5% {
+        transform: translateX(135px);
+    }
+
+    75% {
+        transform: translateX(210px);
+    }
+
+
+    /* Travel down right */
+
+    87.5% {
+        transform: translateX(125px);
+    }
+
+
+    /* Back to bottom */
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+
+/* ========================================
+   UP + DOWN HEART MOVEMENT
+======================================== */
+
+@keyframes vertical {
+
+    /* Bottom point of heart */
+
+    0% {
+        transform: translateY(185px);
+    }
+
+
+    /* Moving upward on left side */
+
+    8% {
+        transform: translateY(125px);
+    }
+
+    16% {
+        transform: translateY(25px);
+    }
+
+
+    /* Left outer curve */
+
+    25% {
+        transform: translateY(-90px);
+    }
+
+
+    /* Top of left bump */
+
+    32% {
+        transform: translateY(-155px);
+    }
+
+    37.5% {
+        transform: translateY(-170px);
+    }
+
+
+    /* Move toward center dip */
+
+    43% {
+        transform: translateY(-145px);
+    }
+
+    50% {
+        transform: translateY(-85px);
+    }
+
+
+    /* Move up right bump */
+
+    57% {
+        transform: translateY(-145px);
+    }
+
+    62.5% {
+        transform: translateY(-170px);
+    }
+
+    68% {
+        transform: translateY(-155px);
+    }
+
+
+    /* Right outer curve */
+
+    75% {
+        transform: translateY(-90px);
+    }
+
+
+    /* Travel downward */
+
+    84% {
+        transform: translateY(25px);
+    }
+
+    92% {
+        transform: translateY(125px);
+    }
+
+
+    /* Bottom point again */
+
+    100% {
+        transform: translateY(185px);
+    }
+}
+
+
+/* ========================================
+   SMALLER SCREENS
+======================================== */
+
+@media (max-width: 600px) {
+
+    .love {
+        width: 340px;
+        height: 340px;
+
+        margin-left: -170px;
+        margin-top: -170px;
+
+        transform: scale(0.8);
+    }
+
+    .love_word {
+        font-size: 12px;
+    }
+
+}
+/* ========================================
+   FOREVER MESSAGE
+======================================== */
+
+.forever-text {
+    position: fixed;
+
+    left: 50%;
+    bottom: 12%;
+
+    transform: translateX(-50%);
+
+    color: #ea80b0;
+
+    font-size: 24px;
+    font-weight: 500;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 3px #ffffff,
+        0 0 6px #ea80b0,
+        0 0 12px #ff4fa3;
+
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        opacity: 0.65;
+        transform: translateX(-50%) scale(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.06);
+    }
+}
+.from-text {
+    margin-top: 8px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    color: #f5b6d3;
+
+    text-shadow:
+        0 0 3px #ea80b0,
+        0 0 7px #ff4fa3;
+}
